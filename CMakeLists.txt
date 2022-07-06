@@ -24,6 +24,7 @@ ELSE(CppUnit_FOUND)
 #	MESSAGE(STATUS "WARNING: CPP_UNIT not found")
 ENDIF (CppUnit_FOUND)
 
+add_subdirectory(submodules/CppLinuxSerial)
 add_subdirectory(submodules/youbot_driver)
 
 include_directories(
@@ -33,6 +34,7 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     submodules/kdl_parser/kdl_parser/include
     submodules/youbot_driver/include
+    submodules/CppLinuxSerial/include
 )
 
 # Library with kinematic
@@ -70,3 +72,6 @@ target_link_libraries(test_servo robot_controllers)
 
 add_executable(test_robot test/test_robot.cpp)
 target_link_libraries(test_robot robot_controllers robots)
+
+add_executable(test_serial test/test_serial.cpp)
+target_link_libraries(test_serial)

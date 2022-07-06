@@ -85,7 +85,7 @@
     </collision>
   </link>
   <joint name="arm_joint_0" type="fixed">
-    <origin rpy="0 0 0" xyz="0.143 0 0.046"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="base_link"/>
     <child link="arm_link_0"/>
   </joint>
@@ -113,10 +113,10 @@
     </collision>
   </link>
   <joint name="arm_joint_1" type="revolute">
-    <origin rpy="0 0 0" xyz="0.024 0 0.096"/>
+    <origin rpy="0 0 2.96705" xyz="0.024 0 0.096"/>
     <parent link="arm_link_0"/>
     <child link="arm_link_1"/>
-    <axis xyz="0 0 1"/>
+    <axis xyz="0 0 -1"/>
     <!--<calibration rising="${arm_1_ref}" falling="${arm_1_ref}"/>-->
     <dynamics damping="1.0" friction="1.0"/>
     <limit effort="10" lower="0" upper="5.89921287174" velocity="1.57079632679"/>
@@ -146,10 +146,10 @@
     </collision>
   </link>
   <joint name="arm_joint_2" type="revolute">
-    <origin rpy="0 0 0" xyz="0.033 0 0.019"/>
+    <origin rpy="0 -1.1344640 0" xyz="0.033 0 0.019"/>
     <parent link="arm_link_1"/>
     <child link="arm_link_2"/>
-    <axis xyz="0 -1 0"/>
+    <axis xyz="0 1 0"/>
     <!--<calibration rising="${arm_2_ref}" falling="${arm_2_ref}"/>-->
     <dynamics damping="1.0" friction="1.0"/>
     <limit effort="10" lower="0" upper="2.70526034059" velocity="1.57079632679"/>
@@ -158,7 +158,7 @@
   <link name="arm_link_2">
     <inertial>
       <!--<origin xyz="0.001 -0.041 0.074" rpy="0 0 0" />-->
-      <origin rpy="0 0 0" xyz="0 -0.032 0.078"/>
+      <origin rpy="0  0" xyz="0 -0.032 0.078"/>
       <mass value="1.155"/>
       <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
     </inertial>
@@ -179,7 +179,7 @@
     </collision>
   </link>
   <joint name="arm_joint_3" type="revolute">
-    <origin rpy="0 0 0" xyz="0.000 0.000 0.155"/>
+    <origin rpy="0 2.54818 0" xyz="0.000 0.000 0.155"/>
     <parent link="arm_link_2"/>
     <child link="arm_link_3"/>
     <axis xyz="0 1 0"/>
@@ -212,10 +212,10 @@
     </collision>
   </link>
   <joint name="arm_joint_4" type="revolute">
-    <origin rpy="0 0 0" xyz="0.000 0.000 0.135"/>
+    <origin rpy="0 -1.7889624 0" xyz="0.000 0.000 0.135"/>
     <parent link="arm_link_3"/>
     <child link="arm_link_4"/>
-    <axis xyz="0 -1 0"/>
+    <axis xyz="0 1 0"/>
     <!--<calibration rising="${arm_4_ref}" falling="${arm_4_ref}"/>-->
     <dynamics damping="1.0" friction="1.0"/>
     <limit effort="10" lower="0" upper="3.57792496659" velocity="1.57079632679"/>
@@ -245,10 +245,10 @@
     </collision>
   </link>
   <joint name="arm_joint_5" type="revolute">
-    <origin rpy="0 0 0" xyz="-0.002 0 0.130"/>
+    <origin rpy="0 0 2.923426497" xyz="-0.002 0 0.130"/>
     <parent link="arm_link_4"/>
     <child link="arm_link_5"/>
-    <axis xyz="0 0 1"/>
+    <axis xyz="0 0 -1"/>
     <!--<calibration rising="${arm_5_ref}" falling="${arm_5_ref}"/>-->
     <dynamics damping="1.0" friction="1.0"/>
     <limit effort="10" lower="0" upper="5.84685299418" velocity="1.57079632679"/>

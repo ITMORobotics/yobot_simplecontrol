@@ -1,9 +1,8 @@
 #include "youbot_arm.h"
 #include <chrono>
+#include <thread>
+#include "math.h"
 
-typedef std::chrono::high_resolution_clock Clock;
-typedef std::chrono::milliseconds milliseconds;
-typedef std::chrono::microseconds microseconds;
 
 YoubotArm::YoubotArm(const std::string name, const std::string configFilePath, float dt = 0.002, uint nj = 5):
 	dt(dt), robot_state(nj)
@@ -48,6 +47,7 @@ bool YoubotArm::update_state(){
 }
 
 bool YoubotArm::speedj(Eigen::VectorXd & jvel){
+	auto start = chrono::system_clock::now().time_since_epoch();
 	bool ok = update_state();
 	std::vector<youbot::JointVelocitySetpoint> jvel_youbot;
 	for(int i=0; i<jvel.size(); i++){
@@ -58,7 +58,12 @@ bool YoubotArm::speedj(Eigen::VectorXd & jvel){
 	youbot::EthercatMaster::getInstance().AutomaticReceiveOn(false);
 	youbot_ethcat->setJointData(jvel_youbot);
 	youbot::EthercatMaster::getInstance().AutomaticReceiveOn(true);
-	delay(dt);
+	
+	auto end = chrono::system_clock::now().time_since_epoch();
+    auto endles_time = std::chrono::duration_cast<std::chrono::microseconds>(end-start).count();
+    auto sleep_for = (long)fmax(0, dt*1e6 - endles_time);
+    std::this_thread::sleep_for(std::chrono::microseconds(sleep_for));
+
 	return ok;
 }
 

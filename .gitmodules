@@ -7,3 +7,6 @@
 [submodule "submodules/SOEM"]
 	path = submodules/SOEM
 	url = https://github.com/OpenEtherCATsociety/SOEM.git
+[submodule "submodules/CppLinuxSerial"]
+	path = submodules/CppLinuxSerial
+	url = https://github.com/gbmhunter/CppLinuxSerial.git

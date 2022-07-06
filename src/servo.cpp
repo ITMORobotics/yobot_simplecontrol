@@ -22,7 +22,7 @@ bool Servo::servoL_to_speedL(PID & pid, Eigen::VectorXd & current_jpose, Eigen::
     Eigen::MatrixXd tmp_orient = target_orient*current_orient.transpose();
     orient_err = logmapSO3(tmp_orient);
     cart_twist_err<<pose_err, orient_err;
-    // std::cout<<cart_twist_err<<std::endl;
+    std::cout<<cart_twist_err<<std::endl;
     pid.control_step(cart_twist_err);
     output_speed_cart = pid.u;
     return true;
