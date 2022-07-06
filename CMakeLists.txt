@@ -12,6 +12,7 @@ ADD_DEFINITIONS(-DDEBUG)
 find_package(Eigen3 REQUIRED)
 find_package(orocos_kdl REQUIRED)
 find_package(Boost COMPONENTS system thread REQUIRED)
+find_package(CppLinuxSerial)
 
 message("message ${orocos_kdl_INCLUDE_DIRS}")
 
@@ -24,7 +25,6 @@ ELSE(CppUnit_FOUND)
 #	MESSAGE(STATUS "WARNING: CPP_UNIT not found")
 ENDIF (CppUnit_FOUND)
 
-add_subdirectory(submodules/CppLinuxSerial)
 add_subdirectory(submodules/youbot_driver)
 
 include_directories(
@@ -74,4 +74,4 @@ add_executable(test_robot test/test_robot.cpp)
 target_link_libraries(test_robot robot_controllers robots)
 
 add_executable(test_serial test/test_serial.cpp)
-target_link_libraries(test_serial)
+target_link_libraries(test_serial CppLinuxSerial)
