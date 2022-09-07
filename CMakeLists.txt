@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.4)
-project(vkr_sim)
+project(youbot_sensorless)
 
 ## Compile as C++11
 set(CMAKE_CXX_STANDARD 11)
@@ -12,7 +12,6 @@ ADD_DEFINITIONS(-DDEBUG)
 find_package(Eigen3 REQUIRED)
 find_package(orocos_kdl REQUIRED)
 find_package(Boost COMPONENTS system thread REQUIRED)
-find_package(CppLinuxSerial)
 
 message("message ${orocos_kdl_INCLUDE_DIRS}")
 
@@ -34,14 +33,13 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     submodules/kdl_parser/kdl_parser/include
     submodules/youbot_driver/include
-    submodules/CppLinuxSerial/include
 )
 
 # Library with kinematic
 add_library(robot_model SHARED
     src/robot_model.cpp
 )
-target_link_libraries(robot_model Eigen3::Eigen ${orocos_kdl_LIBRARIES} kdl_parser)
+target_link_libraries(robot_model Eigen3 ${orocos_kdl_LIBRARIES} kdl_parser)
 
 # Library with controllers
 add_library(robot_controllers SHARED
@@ -52,7 +50,7 @@ add_library(robot_controllers SHARED
 target_link_libraries(robot_controllers robot_model)
 
 
-add_library(robots
+add_library(robots SHARED
   src/youbot_arm.cpp
 )
 
@@ -72,6 +70,3 @@ target_link_libraries(test_servo robot_controllers)
 
 add_executable(test_robot test/test_robot.cpp)
 target_link_libraries(test_robot robot_controllers robots)
-
-add_executable(test_serial test/test_serial.cpp)
-target_link_libraries(test_serial CppLinuxSerial)

@@ -3,7 +3,6 @@
 #include <kdl/jntspaceinertiamatrix.hpp>
 #include <kdl/jntarray.hpp>
 #include <kdl/chainjnttojacsolver.hpp>
-#include <kdl/chainjnttojacdotsolver.hpp>
 #include <kdl/chainiksolverpos_lma.hpp>
 #include <kdl/chainiksolvervel_pinv.hpp>
 #include <kdl/chainfksolverpos_recursive.hpp>

@@ -1,12 +1,6 @@
-[submodule "submodules/youbot_driver"]
-	path = submodules/youbot_driver
-	url = https://github.com/youbot/youbot_driver.git
 [submodule "submodules/kdl_parser"]
 	path = submodules/kdl_parser
 	url = https://github.com/ros/kdl_parser
-[submodule "submodules/SOEM"]
-	path = submodules/SOEM
-	url = https://github.com/OpenEtherCATsociety/SOEM.git
-[submodule "submodules/CppLinuxSerial"]
-	path = submodules/CppLinuxSerial
-	url = https://github.com/gbmhunter/CppLinuxSerial.git
+[submodule "submodules/youbot_driver"]
+	path = submodules/youbot_driver
+	url = https://github.com/TexnoMann/youbot_driver.git
