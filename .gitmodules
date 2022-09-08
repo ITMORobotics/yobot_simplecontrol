@@ -3,4 +3,5 @@
 	url = https://github.com/ros/kdl_parser
 [submodule "submodules/youbot_driver"]
 	path = submodules/youbot_driver
-	url = https://github.com/TexnoMann/youbot_driver.git
+	url = https://github.com/ITMORobotics/youbot_driver.git
+	branch = cmake

@@ -64,7 +64,6 @@ class RobotModel{
 	KDL::Vector gravity;
 	std::shared_ptr<KDL::ChainFkSolverPos_recursive> fksolverpose;
 	std::shared_ptr<KDL::ChainJntToJacSolver> jacsolver;
-	std::shared_ptr<KDL::ChainJntToJacDotSolver> djacsolver;
 
     KDL::Tree tree;
 	KDL::Chain chain;

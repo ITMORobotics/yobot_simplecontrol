@@ -26,7 +26,6 @@ RobotModel::RobotModel(std::string urdf_filename, std::string base_link, std::st
         dim = chain.getNrOfJoints();
         fksolverpose = std::make_shared<KDL::ChainFkSolverPos_recursive>(chain);
         jacsolver =  std::make_shared<KDL::ChainJntToJacSolver>(chain);
-        djacsolver =  std::make_shared<KDL::ChainJntToJacDotSolver>(chain);
 	}
 
 void RobotModel::calcJacobian(Eigen::VectorXd & q, Eigen::MatrixXd & jac)
