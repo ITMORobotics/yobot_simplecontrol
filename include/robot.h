@@ -2,7 +2,7 @@
 #include <Eigen/Eigen>
 #include <Eigen/Core>
 
-struct RobotState{
+struct JointState{
     public:
         uint njoints;
         Eigen::VectorXd q;
@@ -10,7 +10,7 @@ struct RobotState{
         Eigen::VectorXd ddq;
         Eigen::VectorXd torq;
 
-        RobotState(uint njoints){
+        JointState(uint njoints){
             this->njoints = njoints;
             q = Eigen::VectorXd::Zero(njoints);
             dq = Eigen::VectorXd::Zero(njoints);

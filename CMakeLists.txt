@@ -39,7 +39,7 @@ include_directories(
 add_library(robot_model SHARED
     src/robot_model.cpp
 )
-target_link_libraries(robot_model Eigen3 ${orocos_kdl_LIBRARIES} kdl_parser)
+target_link_libraries(robot_model Eigen3::Eigen ${orocos_kdl_LIBRARIES} kdl_parser)
 
 # Library with controllers
 add_library(robot_controllers SHARED
@@ -50,7 +50,7 @@ add_library(robot_controllers SHARED
 target_link_libraries(robot_controllers robot_model)
 
 
-add_library(robots SHARED
+add_library(robots
   src/youbot_arm.cpp
 )
 

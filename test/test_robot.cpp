@@ -32,24 +32,65 @@ int main(int argc, char **argv) {
     Servo servo(dt, robot_model);
 
     Eigen::VectorXd target_speed_cart = Eigen::VectorXd::Zero(6);
-    // target_speed_cart(2) = -0.01;
+    target_speed_cart(0) = -0.01;
+
+    Eigen::VectorXd init_jpose(5);
+    init_jpose<< M_PI/2, M_PI/2, -M_PI/2, M_PI, M_PI;
 
     Eigen::VectorXd jvel = Eigen::VectorXd::Zero(5);
+    Eigen::VectorXd jtorq = Eigen::VectorXd::Zero(5);
 
     Eigen::VectorXd target_translation(3);
     target_translation << 0.2, 0.1, 0.1;
     Eigen::MatrixXd target_orient = Eigen::MatrixXd::Zero(3, 3);
+
+    VectorJointControlType joint_multitype = {JointPosition, JointPosition, JointPosition, JointPosition, JointTorque};
+    JointState target_joint_state(5);
+    target_joint_state.q = init_jpose;
+    target_joint_state.torq = jtorq;
     
     YoubotArm arm = YoubotArm("youbot",  "/media/files/projects/youbot_painter/submodules/youbot_driver/config", dt, 5);
     arm.init();
 
-    for(int i=0; i< 30000; i++){
+    // Test servoj
+    for(int i=0; i< 2000; i++){
         arm.update_state();
-        std::cout<< arm.robot_state.q<< "\n"<<std::endl;
-        servo.servoL_to_speedL(pid, arm.robot_state.q, target_translation, target_orient, target_speed_cart);
-        servo.speedL_to_speedJ(arm.robot_state.q, target_speed_cart, jvel);
+        arm.servoj(init_jpose);
+        
+    }
+    std::cout<< arm.joint_state.q<< "\n"<<std::endl;
+    std::cout << "servoj finished" << std::endl;
+    
+    // Test speedl
+    for(int i=0; i< 2000; i++){
+        arm.update_state();
+        
+        // servo.servoL_to_speedL(pid, arm.joint_state.q, target_translation, target_orient, target_speed_cart);
+        servo.speedL_to_speedJ(arm.joint_state.q, target_speed_cart, jvel);
         arm.speedj(jvel);
     }
     jvel = Eigen::VectorXd::Zero(5);
     arm.speedj(jvel);
+    std::cout<< arm.joint_state.q<< "\n"<<std::endl;
+    std::cout << "speedj finished" << std::endl;
+
+    // Test speedj with rorqj in diffrent joints
+    for(int i=0; i< 2000; i++){
+        arm.update_state();
+        arm.servo_joint_state(joint_multitype ,target_joint_state);
+    }
+    std::cout<< arm.joint_state.torq<< "\n"<<std::endl;
+    std::cout << "servo_joint_state finished" << std::endl;
+
+    // for(int i=0; i< 1000; i++){
+    //     arm.update_state();
+    //     arm.torqj(jtorq);
+    // }
+    // std::cout<< arm.joint_state.torq<< "\n"<<std::endl;
+    // std::cout << "torqj finished" << std::endl;
+
+    jvel = Eigen::VectorXd::Zero(5);
+    arm.speedj(jvel);
+
+    std::cout << "OK" << std::endl;
 }
