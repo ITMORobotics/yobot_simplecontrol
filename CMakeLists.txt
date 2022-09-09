@@ -33,6 +33,7 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     submodules/kdl_parser/kdl_parser/include
     submodules/youbot_driver/include
+    submodules/fast-cpp-csv-parser
 )
 
 # Library with kinematic
@@ -74,3 +75,6 @@ target_link_libraries(test_robot robot_controllers robots)
 # In static gravity compensation
 add_executable(test_sensorless_2dof test/test_sensorless_2dof.cpp)
 target_link_libraries(test_sensorless_2dof robot_model robots)
+
+add_executable(test_trj test/test_trj.cpp)
+target_link_libraries(test_trj robots)

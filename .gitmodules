@@ -5,3 +5,6 @@
 	path = submodules/youbot_driver
 	url = https://github.com/ITMORobotics/youbot_driver.git
 	branch = cmake
+[submodule "submodules/fast-cpp-csv-parser"]
+	path = submodules/fast-cpp-csv-parser
+	url = https://github.com/ben-strasser/fast-cpp-csv-parser.git
