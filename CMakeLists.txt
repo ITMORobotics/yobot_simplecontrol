@@ -70,3 +70,7 @@ target_link_libraries(test_servo robot_controllers)
 
 add_executable(test_robot test/test_robot.cpp)
 target_link_libraries(test_robot robot_controllers robots)
+
+# In static gravity compensation
+add_executable(test_sensorless_2dof test/test_sensorless_2dof.cpp)
+target_link_libraries(test_sensorless_2dof robot_model robots)

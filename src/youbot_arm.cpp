@@ -18,6 +18,7 @@ YoubotArm::YoubotArm(const std::string name, const std::string configFilePath, f
 YoubotArm::~YoubotArm(){
 	delete youbot_ethcat;
 	youbot_ethcat = 0;
+	std::cout<<"Robot disconnected"<<std::endl;
 }
 
 bool YoubotArm::init(){
